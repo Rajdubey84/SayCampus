@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | SayCampus</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #16213e, #0f3460);
+      color: #f1f1f1;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #00bcd4;
+    }
+
+    .about-container {
+      max-width: 1000px;
+      margin: 80px auto;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+    }
+
+    .about-container h1 {
+      text-align: center;
+      font-size: 2.2rem;
+      color: #00bcd4;
+      margin-bottom: 20px;
+    }
+
+    .about-container p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+      color: #f1f1f1;
+    }
+
+    .features {
+      margin-top: 30px;
+    }
+
+    .features h2 {
+      color: #00bcd4;
+      margin-bottom: 10px;
+    }
+
+    .features ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .features li {
+      background: rgba(255, 255, 255, 0.1);
+      margin: 10px 0;
+      padding: 10px 15px;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    .features li:hover {
+      background: rgba(0, 188, 212, 0.2);
+    }
+
+    /* 👨‍💻 Developer Section */
+    .team-section {
+      margin-top: 60px;
+      text-align: center;
+    }
+
+    .team-section h2 {
+      color: #00bcd4;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+
+    .developer-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 25px;
+      display: inline-block;
+      text-align: center;
+      max-width: 300px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
+    }
+
+    .developer-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px rgba(0, 188, 212, 0.4);
+    }
+
+    .developer-card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      border: 3px solid #00bcd4;
+      object-fit: cover;
+    }
+
+    .developer-card h3 {
+      margin: 10px 0 5px;
+      color: #00bcd4;
+    }
+
+    .developer-card p {
+      font-size: 0.95rem;
+      color: #ddd;
+      margin-bottom: 15px;
+    }
+
+    .social-links a {
+      color: #00bcd4;
+      margin: 0 8px;
+      font-size: 1.2rem;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .social-links a:hover {
+      color: #fff;
+    }
+
+    .back-btn {
+      display: inline-block;
+      background: #00bcd4;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      margin-top: 40px;
+      transition: 0.3s;
+    }
+
+    .back-btn:hover {
+      background: #008ba3;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">🎓 SayCampus</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" style="color:#00bcd4;">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="about-container">
+    <h1>About SayCampus</h1>
+    <p>
+      The <strong>SayCampus</strong> is an innovative digital platform designed to make communication between students and administration transparent, fast, and secure.
+      It ensures every voice is heard and every issue is resolved efficiently.
+    </p>
+
+    <h2>🎯 Our Mission</h2>
+    <p>
+      To empower students with a simple and fair system to submit complaints, track their progress, and get resolutions without fear or delay.
+    </p>
+
+    <div class="features">
+      <h2>🚀 Key Features</h2>
+      <ul>
+        <li>Anonymous and secure complaint submissions.</li>
+        <li>Real-time complaint tracking for users.</li>
+        <li>Admin dashboard for managing complaints efficiently.</li>
+        <li>Category-wise complaints (Hostel, Library, Bus, etc.)</li>
+        <li>Offline support with auto-sync once online.</li>
+        <li>Clean, modern, and responsive user interface.</li>
+      </ul>
+    </div>
+
+    <h2>⚙️ How It Works</h2>
+    <p>
+      Students submit complaints using a web form or QR code. Data syncs automatically with Firebase.  
+      Admins review, update, and resolve complaints while users can track status in real-time.  
+      This promotes transparency and faster communication between students and management.
+    </p>
+
+    <!-- 👨‍💻 Developer Section -->
+    <div class="team-section">
+      <h2>👨‍💻 Meet the Developer</h2>
+      <div class="developer-card">
+        <img src="Rajphoto.jpeg" alt="Raj Dubey">
+        <h3>Raj Dubey</h3>
+        <p>Full Stack Developer | BCA Student</p>
+        <p>Passionate about creating digital tools that solve real-world problems in education and technology.</p>
+        <div class="social-links">
+          <a href="mailto:draj90391@gmail.com" title="Email">📧</a>
+          <a href="https://instagram.com/rajdubey2201" target="_blank" title="Instagram">📷</a>
+          <a href="https://github.com/Rajdubey84" target="_blank" title="GitHub">💻</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;">
+      <a href="index.html" class="back-btn">⬅ Back to Home</a>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 SayCampus | Designed & Developed by Raj 💻
+  </footer>
+</body>
+</html>

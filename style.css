@@ -1,0 +1,274 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #0b0c10;
+  color: #f1f1f1;
+}
+
+/* Navigation Bar */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1f2833;
+  padding: 15px 40px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #66fcf1;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  color: #c5c6c7;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #66fcf1;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px;
+  background: linear-gradient(135deg, #1f2833, #0b0c10);
+  flex-wrap: wrap;
+}
+
+.hero-content {
+  max-width: 50%;
+}
+
+.hero-content h1 {
+  font-size: 40px;
+  color: #66fcf1;
+}
+
+.hero-content p {
+  font-size: 18px;
+  color: #c5c6c7;
+}
+
+.hero-content button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border: none;
+  background-color: #45a29e;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.hero-content button:hover {
+  background-color: #66fcf1;
+  color: #0b0c10;
+}
+
+/* Auth Section (Login/Signup) */
+.form-side {
+  background: #1f2833;
+  padding: 30px;
+  border-radius: 10px;
+  width: 320px;
+  box-shadow: 0 0 15px rgba(102, 252, 241, 0.3);
+}
+
+.auth-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.auth-card input {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  background-color: #0b0c10;
+  color: #fff;
+}
+
+.auth-card button {
+  background-color: #45a29e;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.auth-card button:hover {
+  background-color: #66fcf1;
+  color: #0b0c10;
+}
+
+.auth-card p {
+  color: #c5c6c7;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.logout-btn {
+  background: #1cc419;
+}
+
+.logout-btn:hover {
+  background: #c24c4c;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Profile in Navbar */
+.nav-profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #fff;
+  transition: transform 0.2s ease;
+}
+
+.nav-profile:hover {
+  transform: scale(1.1);
+}
+
+/* Popup Menu for Profile */
+.profile-menu {
+  position: fixed;
+  top: 70px;
+  right: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: 260px;
+  z-index: 100;
+  text-align: center;
+}
+
+.profile-photo {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3px solid #007bff;
+  margin-bottom: 10px;
+  object-fit: cover;
+}
+
+.profile-buttons button {
+  display: block;
+  width: 100%;
+  margin: 5px 0;
+  padding: 8px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.profile-buttons button:hover {
+  background: #0056b3;
+}
+
+.hidden {
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+.close-btn, .dashboard-btn {
+  display: block;
+  margin-top: 15px;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #45a29e;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.close-btn:hover, .dashboard-btn:hover {
+  background: #66fcf1;
+  color: #0b0c10;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.footer-section a {
+  color: #c5c6c7;
+  text-decoration: none;
+  display: block;
+  margin: 4px 0;
+  transition: 0.3s;
+}
+
+.footer-section a:hover {
+  color: #66fcf1;
+  padding-left: 5px;
+}
+
+
+
+
+
+
+
+
+

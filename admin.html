@@ -1,0 +1,272 @@
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard - Complaint Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="admin.css">
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #f5f7fa;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    h2, h3 { text-align: center; color: #2c3e50; }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 800px;
+    }
+    button {
+      padding: 8px 16px;
+      margin: 5px;
+      font-size: 14px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover { background-color: #45a049; transform: scale(1.03); }
+    select, input[type="file"], textarea, input[type="text"], input[type="date"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      box-sizing: border-box;
+    }
+    .topbar { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 1100px; margin: 10px auto; align-items: start; }
+    .panel { background: #fff; border-radius: 10px; padding: 16px; box-shadow: 0 4px 10px rgba(0,0,0,0.06); }
+    .panel h3 { margin-top: 0; }
+    
+    
+
+    
+    
+    
+    
+    
+    .announcement-item { border-left: 5px solid #3498db; background: #fdfdfd; padding: 12px; border-radius: 8px; margin-bottom: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
+    .announcement-row { display:flex; justify-content:space-between; gap:8px; align-items:center; flex-wrap:wrap; }
+    .muted { color:#666; font-size:13px; }
+    .stats { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+    .small-btn { padding:6px 10px; font-size:13px; border-radius:6px; }
+    .danger { background:#e74c3c; }
+    .file-link { display:inline-block; margin-top:6px; text-decoration:none; color:#2c7be5; font-weight:600; }
+    .toggle-list { font-size:13px; color:#444; cursor:pointer; text-decoration:underline; background:none; border:none; padding:0; }
+    .complaints-section { margin-top:20px; }
+
+    .users-list { margin-top:12px; }
+    .user-row, .upload-row { background:#fafafa; padding:10px; border-radius:8px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center; }
+    .user-info { font-size:14px; }
+    .stat-box { background:#fff; border-radius:8px; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.04); margin-bottom:10px; display:inline-block; }
+
+    .pending { color: #f39c12; font-weight: bold; }
+    .progress { color: #3498db; font-weight: bold; }
+    .resolved { color: #27ae60; font-weight: bold; }
+
+    /* ============================ */
+    /* Users Table Modal */
+    /* ============================ */
+    #usersTableModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      overflow-y: auto;
+      z-index: 9999;
+      padding: 40px 20px;
+      box-sizing: border-box;
+    }
+    #usersTableModal .modal-content {
+      background: #fff;
+      margin: auto;
+      padding: 25px;
+      border-radius: 12px;
+      max-width: 900px;
+      position: relative;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    #usersTableModal h2 { text-align:center; color:#2c3e50; margin-top:0; font-size:1.8rem; }
+    #usersTableModal button.close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      padding: 8px 14px;
+      background: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    #usersTableModal button.close-btn:hover { background: #c0392b; transform: scale(1.05); }
+    #usersTableModal table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-size: 14px;
+      min-width: 600px;
+    }
+    #usersTableModal th, #usersTableModal td { border: 1px solid #ddd; padding: 10px; text-align:left; vertical-align: middle; }
+    #usersTableModal th { background-color: #3498db; color:white; font-weight:600; }
+    #usersTableModal tr:nth-child(even) { background:#f9f9f9; }
+    #usersTableModal tr:hover { background:#f1f1f1; }
+    #usersTableModal img { width:40px; height:40px; border-radius:50%; object-fit:cover; display:block; margin:auto; }
+    #usersTableModal button.delete-btn {
+      padding:6px 10px;
+      background:#e74c3c;
+      color:white;
+      border:none;
+      border-radius:5px;
+      cursor:pointer;
+      font-size:13px;
+      transition:0.3s;
+    }
+    #usersTableModal button.delete-btn:hover { background:#c0392b; transform:scale(1.05); }
+    body.modal-active > .grid,
+    body.modal-active > .topbar {
+      filter: blur(2px);
+      pointer-events: none;
+      user-select: none;
+      transition:0.3s;
+    }
+    @keyframes fadeIn {
+      from {opacity:0; transform:translateY(-20px);}
+      to {opacity:1; transform:translateY(0);}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <h2>⚙️ Admin Dashboard</h2>
+    <div>
+      <button onclick="showUsersTable()">👥 Users</button>
+      <button onclick="logoutAdmin()">Logout</button>
+      <button onclick="goBack()">⬅ Back to Home</button>
+    </div>
+  </div>
+
+
+
+
+
+  
+
+
+
+  <!-- Users Table Modal -->
+  <div id="usersTableModal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeUsersTable()">Close</button>
+      <h2>All Users</h2>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Profile</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Signup/Login Time</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="usersTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Dashboard content -->
+  <div class="grid">
+    <div class="panel">
+      <h3>📢 Create Announcement / Assignment</h3>
+      <label><b>Type</b></label>
+      <select id="annType">
+        <option>Announcement</option>
+        <option>Assignment</option>
+        <option>Notice</option>
+        <option>Circular</option>
+        <option>Event</option>
+      </select>
+      <label><b>Title</b></label>
+      <input type="text" id="annTitle" placeholder="Enter title (e.g., Assignment 1)" />
+      <label><b>Description</b></label>
+      <textarea id="annDesc" rows="4" placeholder="Write details or instructions..."></textarea>
+      <label><b>Deadline (optional)</b></label>
+      <input type="date" id="annDeadline" />
+      <label><b>Attach File</b></label>
+      <input type="file" id="annFile" />
+      <div style="display:flex; gap:8px; margin-top:10px;">
+        <button onclick="createAnnouncement()">Upload</button>
+        <button onclick="clearCreateForm()" class="small-btn">Clear</button>
+      </div>
+      <hr>
+      <h3>📜 Admin Uploads</h3>
+      <div id="adminAnnouncementsList"></div>
+    </div>
+
+
+    <div class="panel">
+      <h3>📊 Summary</h3>
+      <div>
+        <span class="stat-box">👥 Users: <strong id="statUsers">0</strong></span>
+        <span class="stat-box">📂 Uploads: <strong id="statUploads">0</strong></span>
+      </div>
+      <hr>
+      <h3>📋 All Complaints</h3>
+      <div id="allComplaints">Loading complaints...</div>
+    </div>
+  </div>
+
+
+
+
+  
+
+  
+    
+
+
+</body>
+<script src="admin.js"></script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,272 @@
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Admin</title>
+  <link rel="stylesheet" href="contact.css" />
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+    .container {
+      background: #fff;
+      padding: 20px 25px;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 550px;
+      margin-top: 40px;
+    }
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+    label {
+      font-weight: 600;
+      margin-top: 10px;
+      display: block;
+      color: #2c3e50;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-top: 5px;
+      font-size: 15px;
+    }
+    textarea { resize: vertical; }
+    button {
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 15px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 15px;
+      transition: 0.3s;
+    }
+    button:hover { background-color: #2980b9; transform: scale(1.03); }
+    .messages {
+      margin-top: 30px;
+    }
+    .msg-card {
+      background: #fdfdfd;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      margin-bottom: 12px;
+    }
+    .msg-card b { color: #2c3e50; }
+    .msg-status {
+      font-weight: bold;
+      margin-top: 6px;
+    }
+    .pending { color: #f39c12; }
+    .progress { color: #3498db; }
+    .solved { color: #27ae60; }
+    .reply-box {
+      margin-top: 8px;
+      background: #f0f7ff;
+      padding: 8px;
+      border-radius: 8px;
+      font-style: italic;
+      color: #2c3e50;
+    }
+    .attachment-link {
+      display:block;
+      color:#2c7be5;
+      text-decoration:none;
+      margin-top:5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>📞 Contact Admin</h2>
+
+    <form id="contactForm">
+      <label>Full Name</label>
+      <input type="text" id="name" required />
+
+      <label>Email</label>
+      <input type="email" id="email" required />
+
+      <label>Gender</label>
+      <select id="gender" required>
+        <option value="">Select</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
+
+      <label>Phone Number</label>
+      <input type="text" id="phone" required />
+
+      <label>Address</label>
+      <input type="text" id="address" required />
+
+      <label>Category</label>
+      <select id="category" required>
+        <option value="">Select Category</option>
+        <option>College</option>
+        <option>Buses</option>
+        <option>Academic</option>
+        <option>Subject</option>
+        <option>Library</option>
+        <option>Canteen</option>
+        <option>Hostel</option>
+        <option>Others</option>
+      </select>
+
+      <label>Message</label>
+      <textarea id="message" rows="4" required></textarea>
+
+      <label>Attachment (Photo, Video, File)</label>
+      <input type="file" id="fileInput" accept="image/*,video/*,.pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.mp3,.wav,.zip,.rar" capture />
+
+      <button type="submit">Send Message</button>
+    </form>
+
+    <div class="messages">
+      <h3>📩 Your Messages</h3>
+      <div id="userMessages"></div>
+    </div>
+  </div>
+
+
+
+<script>
+// ============================
+// ✅ Load Messages for Logged-In User
+// ============================
+let allMessages = JSON.parse(localStorage.getItem("contactMessages")) || [];
+
+let userThread = [];
+let currentUserEmail = ""; // Auto fill on form submit later
+
+
+// ✅ Load User Chat After Refresh
+function loadUserChat() {
+    if (!currentUserEmail) return;
+
+    userThread = allMessages.filter(msg => msg.email === currentUserEmail);
+
+    let box = document.getElementById("chatBox");
+    box.innerHTML = "";
+
+    userThread.forEach(m => {
+        let div = document.createElement("div");
+        div.classList.add("msg");
+        div.classList.add(m.sender === "user" ? "user-msg" : "admin-msg");
+        div.innerHTML = `<strong>${m.sender}:</strong> ${m.message}`;
+        box.appendChild(div);
+    });
+
+    box.scrollTop = box.scrollHeight;
+}
+
+// ============================
+// ✅ Form Submit
+// ============================
+document.getElementById("contactForm").addEventListener("submit", (e) => {
+    e.preventDefault();  // ✅ Stop reload
+
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();  // ✅ Unique ID for thread
+    let subject = document.getElementById("subject").value.trim();
+    let msg = document.getElementById("message").value.trim();
+
+    if (!name || !email || !subject || !msg) {
+        alert("Fill all fields!");
+        return;
+    }
+
+    currentUserEmail = email;
+
+    let newMsg = {
+        name: name,
+        email: email,
+        subject: subject,
+        message: msg,
+        sender: "user",
+        time: Date.now()
+    };
+
+    allMessages.push(newMsg);
+    localStorage.setItem("contactMessages", JSON.stringify(allMessages));
+
+    loadUserChat();
+
+    alert("Message Sent Successfully ✅");
+});
+ 
+
+// ============================
+// ✅ User Reply Button
+// ============================
+document.getElementById("replyBtn").addEventListener("click", () => {
+    let reply = document.getElementById("replyInput").value.trim();
+
+    if (!reply || !currentUserEmail) return;
+
+    let newReply = {
+        name: "",
+        email: currentUserEmail,
+        subject: "",
+        message: reply,
+        sender: "user",
+        time: Date.now()
+    };
+
+    allMessages.push(newReply);
+    localStorage.setItem("contactMessages", JSON.stringify(allMessages));
+
+    document.getElementById("replyInput").value = "";
+
+    loadUserChat();
+});
+
+
+
+
+
+</script>
+
+
+
+
+
+  
+
+</body>
+</html>
+
+
+
+
+
+

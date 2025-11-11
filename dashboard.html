@@ -1,0 +1,114 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | SayCampus</title>
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <!-- 🔝 Navigation Menu -->
+  <header>
+    <div class="logo">🎓 SayCampus</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">🏠 Home</a></li>
+        <li><a href="#" id="assignmentsBtn">📚 Assignments</a></li>
+        <li><a href="#" id="complaintsBtn">📢 Complaints</a></li>
+        <li><img src="default-user.png" id="profileIcon" class="profile-icon" onclick="toggleProfileMenu()" /></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- 👤 Profile Popup -->
+  <div id="profileMenu" class="profile-menu hidden">
+    <img id="profilePhoto" src="default-user.png" class="profile-photo" />
+    <input type="file" id="profileUpload" accept="image/*" onchange="updateProfilePhoto()" />
+    <input type="text" id="profileName" placeholder="Name" />
+    <input type="email" id="profileEmail" placeholder="Email" />
+    <input type="password" id="profilePassword" placeholder="Password" />
+    <button onclick="saveProfile()">💾 Save</button>
+    <button onclick="toggleHistory()">📜 History</button>
+    <button onclick="logout()">🚪 Logout</button>
+    <button onclick="toggleProfileMenu()">❌ Close</button>
+  </div>
+
+  <!-- 📜 History Modal -->
+  <div id="historySection" class="history-section hidden">
+    <h2>🕒 Your History</h2>
+    <div id="historyList"></div>
+    <button onclick="closeHistory()">Close</button>
+  </div>
+
+  <!-- 🧾 Assignments Section -->
+  <section id="assignments" class="section visible">
+    <h2>📚 Latest Assignments from Admin</h2>
+    <div id="adminAssignments"></div>
+
+    <div class="upload-area">
+      <h3>📤 Submit Your Assignment</h3>
+      <textarea id="assignmentMessage" placeholder="Add a message (optional)..."></textarea>
+      <input type="file" id="assignmentFile" color="#a5aa67"/>
+      <button onclick="uploadAssignment()">Upload</button>
+    </div>
+  </section>
+  <!-- 📢 Complaints Section -->
+  <section id="complaints" class="section hidden">
+    <h2>📢 Raise a Complaint</h2>
+
+    <!-- 🔘 Toggle Buttons -->
+    <div class="complaint-buttons">
+      <button id="showFormBtn" onclick="showComplaintForm()">✏️ New Complaint</button>
+      <button id="viewComplaintsBtn" onclick="showUserComplaints()">👀 View My Complaints</button>
+    </div>
+
+    <!-- 🧾 Complaint Form -->
+    <div id="complaintFormArea">
+      <input type="text" id="complaintSubject" placeholder="Subject" required />
+      <select id="complaintCategory">
+        <option value="Hostel">Hostel</option>
+        <option value="Library">Library</option>
+        <option value="College">College</option>
+        <option value="Buses">Buses</option>
+        <option value="Canteen">Canteen</option>
+        <option value="Others">Others</option>
+      </select>
+      <textarea id="complaintMessage" placeholder="Describe your issue..."></textarea>
+      <input type="file" id="complaintFile" multiple />
+      <button onclick="submitComplaint()">Submit Complaint</button>
+    </div>
+
+    <!-- 📋 User Complaints List -->
+    <div id="userComplaintsArea" class="hidden">
+      <h3>📜 My Complaints & Status</h3>
+      <div id="userComplaintsList"></div>
+      <button onclick="closeUserComplaints()">❌ Close</button>
+    </div>
+  </section>
+
+
+
+
+  
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,317 @@
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SayCampus</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* 🔄 Swipe Text Animation Styling */
+    .swipe-box {
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: #fff;
+      background: linear-gradient(135deg, #16213e, #0f3460);
+      border-radius: 10px;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+      transition: opacity 0.6s ease-in-out;
+    }
+
+    .swipe-box.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .swipe-text {
+      font-size: 1.3rem;
+      font-weight: 600;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-in-out;
+      position: absolute;
+    }
+
+    .swipe-text.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <!-- 🌐 Navigation Bar -->
+  <header>
+
+
+    
+    <div class="logo">🎓 SayCampus</div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li id="loginNav"><a href="#" onclick="toggleLogin()">User Login</a></li>
+        <li id="signupNav"><a href="#" onclick="toggleSignup()">Signup</a></li>
+
+        <!-- 👤 Profile Icon after Login -->
+        <li id="profileNav" class="hidden">
+          <img id="navProfileImage" src="default-user.png" class="nav-profile" onclick="toggleProfileMenu()" />
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Profile Popup Menu -->
+  <div id="profileMenu" class="profile-menu hidden">
+    <div class="profile-info">
+      <img id="profileImage" class="profile-photo" src="default-user.png" alt="Profile Photo" />
+      <h3 id="userName">User</h3>
+      <p id="userEmail">example@email.com</p>
+    </div>
+
+    <div class="profile-buttons">
+      <input type="file" id="uploadPhoto" accept="image/*" onchange="saveProfileImage()" />
+      <button onclick="goToComplaint()">Go to Dashboard</button>
+      <button onclick="logoutUser()">Logout</button>
+      <button onclick="closeProfileMenu()">Cancel</button>
+    </div>
+  </div>
+
+  <!-- 🦸 Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Raise Your Voice, Make a Difference</h1>
+      <p>Your complaints are heard, handled, and resolved with care.</p>
+      <button onclick="toggleLogin()">Get Started</button>
+    </div>
+
+    <div class="form-side">
+      <!-- ✨ Text Swipe Animation (Auto-hide) -->
+      <div class="swipe-box" id="swipeBox">
+        <div class="swipe-text active">📢 Raise Your Complaints Easily</div>
+        <div class="swipe-text">🚀 Track Complaint Status Instantly</div>
+        <div class="swipe-text">🤝 Stay Connected With Admins</div>
+        <div class="swipe-text">💬 Get Quick Responses and Updates</div>
+      </div>
+
+      <div id="loginCard" class="auth-card hidden">
+        <h3>🔑 User Login</h3>
+        <input type="email" id="loginEmail" placeholder="Email" required />
+        <input type="password" id="loginPassword" placeholder="Password" required />
+        <button onclick="userLogin()">Login</button>
+        <p>New User? <a href="#" onclick="toggleSignup()">Signup</a></p>
+      </div>
+
+      <div id="signupCard" class="auth-card hidden">
+        <h3>📝 Signup</h3>
+        <input type="text" id="signupName" placeholder="Full Name" required />
+        <input type="email" id="signupEmail" placeholder="Email" required />
+        <input type="password" id="signupPassword" placeholder="Password" required />
+        <button onclick="userSignup()">Create Account</button>
+        <p>Already have an account? <a href="#" onclick="toggleLogin()">Login</a></p>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+  
+<footer class="footer-grid" id="mainFooter" style="
+  background:#1f2833;
+  padding:40px 20px;
+  color:#c5c6c7;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap:30px;
+  border-top:2px solid #66fcf1;
+  margin-top:40px;
+">
+
+  <!-- 🔗 Quick Links -->
+  <div class="footer-section">
+    <h4 style="color:#66fcf1;margin-bottom:12px;">Quick Links</h4>
+  </br>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="#">FAQ</a>
+    <a href="#" onclick="openAdminPage()">Admin Access</a>
+  </div>
+
+  <!-- 🏛 Address -->
+  <div class="footer-section">
+    <h4 style="color:#66fcf1;margin-bottom:12px;">Campus Address</h4>
+    <p>📍 Student Grievance Cell</p>
+    <p>Block A — Ground Floor</p>
+    <p>Your College / United Institute 
+      of Management FUGS Naini</p>
+    <p>🕒 9:00 AM - 5:00 PM</p>
+  </div>
+
+  <!-- 📞 Contact + Follow Us (fixed) -->
+  <div class="footer-section">
+   
+<h4 style="color:#66fcf1;margin-top:20px;">Follow Us</h4>
+
+<div style="
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  margin-top:10px;
+">
+
+  <a href="#" style="color:#c5c6c7;text-decoration:none;display:block;">
+    🔵 Facebook
+  </a>
+
+  <a href="https://instagram.com/rajdubey2201" style="color:#c5c6c7;text-decoration:none;display:block;">
+    🟣 Instagram
+  </a>
+
+  <a href="https://www.linkedin.com/in/Rajdubey84" style="color:#c5c6c7;text-decoration:none;display:block;">
+    🔵 LinkedIn
+  </a>
+
+</div>
+
+
+
+
+  </div>
+
+  <!-- 📨 Newsletter -->
+  <div class="footer-section">
+    <h4 style="color:#66fcf1;margin-bottom:12px;">Stay Updated</h4>
+    <p>Get latest updates, notices & announcements.</p>
+    <input type="email" placeholder="draj90391@gmail.com" 
+      style="width:100%;
+      padding:10px;
+      border-radius:6px;
+      background:#0b0c10;
+      color:white;
+      border:1px solid #45a29e;
+      margin-top:10px;">
+    <button style="
+      width:100%;
+      margin-top:10px;
+      padding:10px;
+      background:#45a29e;
+      border:none;
+      border-radius:6px;
+      color:white;
+      cursor:pointer;
+      font-weight:500;
+    ">Subscribe</button>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div style="
+    grid-column:1/-1;
+    text-align:center;
+    padding-top:15px;
+    border-top:1px solid #45a29e;
+    margin-top:20px;
+  ">
+    <a href="#" style="margin-right:15px;color:#c5c6c7;">Privacy Policy</a>
+    <a href="#" style="margin-right:15px;color:#c5c6c7;">Terms & Conditions</a>
+    <a href="#" style="color:#c5c6c7;">Help Desk</a>
+
+    <p style="margin-top:8px;color:#66fcf1;">
+      © 2025 Student Complaint Portal | Designed & Developed by Raj 💻
+    </p>
+  </div>
+
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+function loadHeroEvents() {
+  const announcements = JSON.parse(localStorage.getItem("userAnnouncements")) || [];
+  const events = announcements.filter(a => a.type === "Event");
+
+  let container = document.getElementById("heroSlideContainer");
+  if (!container) return;
+
+  container.innerHTML = "";  // reset old slides
+
+  // Add dynamic event slides
+  events.forEach(e => {
+    const div = document.createElement("div");
+    div.className = "hero-slide";
+    div.innerHTML = `
+      <h2 style="color:#66fcf1;">🎉 ${e.title}</h2>
+      <p>${e.desc}</p>
+      <p style="color:#45a29e;"><b>Deadline:</b> ${e.deadline}</p>
+    `;
+    container.appendChild(div);
+  });
+
+  // Add your normal static slides again
+  addDefaultSlides();
+}
+
+setInterval(loadHeroEvents, 5000);
+
+</script>
+
+
+
+
+  
+
+
+
+
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
