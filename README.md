@@ -1,4 +1,4 @@
-# SayCampus – Empowering Students, Simplifying Complaints
+# The SayCampus – Empowering Students, Simplifying Complaints
 
 **SayCampus** is a lightweight, local server-based student complaint portal designed to make reporting and managing grievances simple and efficient. It helps students voice concerns and allows administrators to respond instantly.
 
